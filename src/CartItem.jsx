@@ -7,63 +7,93 @@ function CartItem({ onContinueShopping }) {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
+  // Removes an item completely from the cart
   const handleRemove = (name) => {
     dispatch(removeItem(name));
   };
 
+  // Updates quantity based on increment or decrement
   const handleQuantityChange = (name, delta) => {
     const item = cartItems.find((i) => i.name === name);
-    if (item) {
-      const newQuantity = item.quantity + delta;
-      if (newQuantity > 0) {
-        dispatch(updateQuantity({ name, quantity: newQuantity }));
-      } else {
-        dispatch(removeItem(name));
-      }
+    if (!item) return;
+
+    const newQuantity = item.quantity + delta;
+    if (newQuantity > 0) {
+      dispatch(updateQuantity({ name, quantity: newQuantity }));
+    } else {
+      dispatch(removeItem(name));
     }
   };
 
+  // Clears entire cart
   const handleClearCart = () => {
     dispatch(clearCart());
   };
 
+  // Placeholder checkout action
   const handleCheckout = () => {
     alert("🛒 Checkout feature not implemented yet!");
   };
 
+  // Calculate total cart value
   const totalCost = cartItems.reduce((total, item) => {
-    const numericCost = parseFloat(item.cost.replace("$", ""));
-    return total + numericCost * item.quantity;
+    const price = parseFloat(item.cost.replace("$", ""));
+    return total + price * item.quantity;
   }, 0);
 
   return (
     <div className="cart-container">
       <h1>Total Cart Amount: ${totalCost.toFixed(2)}</h1>
+
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <>
-          {cartItems.map((item, index) => (
-            <div key={index} className="cart-item">
-              <img src={item.image} alt={item.name} className="cart-item-image" />
-              <div className="cart-item-details">
-                <h3>{item.name}</h3>
-                <p>{item.cost}</p>
-                <div className="quantity-controls">
-                  <button onClick={() => handleQuantityChange(item.name, -1)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => handleQuantityChange(item.name, 1)}>+</button>
+          {cartItems.map((item) => {
+            const price = parseFloat(item.cost.replace("$", ""));
+            return (
+              <div key={item.name} className="cart-item">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="cart-item-image"
+                />
+
+                <div className="cart-item-details">
+                  <h3>{item.name}</h3>
+                  <p>{item.cost}</p>
+
+                  <div className="quantity-controls">
+                    <button
+                      aria-label="Decrease quantity"
+                      onClick={() => handleQuantityChange(item.name, -1)}
+                      disabled={item.quantity === 1}
+                    >
+                      -
+                    </button>
+
+                    <span>{item.quantity}</span>
+
+                    <button
+                      aria-label="Increase quantity"
+                      onClick={() => handleQuantityChange(item.name, 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <p>Total: ${(price * item.quantity).toFixed(2)}</p>
+
+                  <button
+                    className="delete-button"
+                    onClick={() => handleRemove(item.name)}
+                  >
+                    Delete
+                  </button>
                 </div>
-                <p>Total: ${(parseFloat(item.cost.replace("$", "")) * item.quantity).toFixed(2)}</p>
-                <button
-                  className="delete-button"
-                  onClick={() => handleRemove(item.name)}
-                >
-                  Delete
-                </button>
               </div>
-            </div>
-          ))}
+            );
+          })}
 
           <div className="cart-buttons">
             <button className="continue-button" onClick={onContinueShopping}>
