@@ -1,25 +1,33 @@
 import React from 'react';
 import './AboutUs.css';
+import { Link } from 'react-router-dom';
 
-function AboutUs() {
+function AboutUs({ onGetStarted }) {
   return (
     <div className="about-us-container">
-      <h1 className="about-us-heading">AutoRent Premium</h1>
-      <p className="about-us-description">
-        Bun venit la AutoRent Premium, partenerul tău de încredere pentru mobilitate de top. 
-        Indiferent dacă ai nevoie de o mașină compactă pentru oraș sau de o limuzină de lux 
-        pentru evenimente speciale, suntem aici să îți oferim experiența perfectă la volan.
-      </p>
+      {/* Background Layer (Image + Overlay + Shapes) */}
+      <div className="background-image"></div>
+      <div className="overlay"></div>
+      <div className="shape shape-1"></div>
+      <div className="shape shape-2"></div>
       
-      <p className="about-us-content">
-        Flota noastră este compusă din modele noi, verificate tehnic și igienizate, gata de drum. 
-        Ne mândrim cu transparența costurilor și cu suportul oferit clienților noștri 24/7.
-        De la modele electrice prietenoase cu mediul, până la SUV-uri puternice pentru vacanțe 
-        cu familia, AutoRent Premium îți pune cheile în mână rapid și simplu.
-      </p>
-
-      {/* Putem elimina imaginile cu plante și punem ceva neutru sau legat de drum */}
-      {/* <div className="plant_logo_left"><img src="..." /></div> */} 
+      {/* Main Content Card */}
+      <div className="glass-content">
+        <h1 className="brand-title">AutoRent <span className="highlight">Premium</span></h1>
+        
+        <p className="brand-slogan">
+          Elegance. Power. Freedom.
+        </p>
+        
+        <p className="brand-description">
+          Descoperă flota noastră exclusivistă și transformă fiecare călătorie într-o experiență de neuitat.
+          De la limuzine business la mașini sport, suntem gata de drum.
+        </p>
+        
+        <button className="cta-button" onClick={onGetStarted}>
+          Get Started
+        </button>
+      </div>
     </div>
   );
 }

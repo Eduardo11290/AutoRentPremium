@@ -1,0 +1,167 @@
+/* Layout Principal - Grid */
+.product-page {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2 părți stânga, 1 parte dreapta */
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- STÂNGA: Galerie --- */
+.hero-img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.thumbnails {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.thumbnails img {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.thumbnails img.active-thumb,
+.thumbnails img:hover {
+  opacity: 1;
+  border: 2px solid #007bff;
+}
+
+/* Tabel & Descriere */
+.specs-section, .description {
+  margin-top: 40px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.specs-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.specs-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- DREAPTA: Calculator Sticky --- */
+.sidebar {
+  position: relative;
+}
+
+.calculator-card {
+  position: sticky; /* Elementul devine fix la scroll */
+  top: 20px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.price-tag {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.price-tag .amount {
+  font-size: 32px;
+  color: #007bff; /* Albastru Autovit */
+  font-weight: 800;
+}
+
+.calc-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box; /* Important pentru padding */
+}
+
+.btn-calc {
+  width: 100%;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  color: #333;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.btn-calc:hover {
+  background-color: #e2e6ea;
+}
+
+.result-box {
+  background: #f1f8ff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.result-box .row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.result-box .total {
+  font-size: 18px;
+  color: #007bff;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #dae0e5;
+}
+
+.btn-reserve {
+  width: 100%;
+  background-color: #ff4000; /* Portocaliu specific site-uri auto */
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.btn-reserve:hover {
+  background-color: #e03800;
+}
+
+/* Mobil */
+@media (max-width: 768px) {
+  .product-page {
+    grid-template-columns: 1fr;
+  }
+  .calculator-card {
+    position: static; /* Pe mobil nu mai e sticky */
+  }
+}
