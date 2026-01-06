@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './ProductList.css';
@@ -8,13 +8,25 @@ function ProductList() {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.items);
 
+    useEffect(() => {
+        const savedScroll = sessionStorage.getItem('scrollPosition');
+        if (savedScroll) {
+            window.scrollTo(0, parseInt(savedScroll));
+        }
+    }, []);
+
+    // --- 2. FUNCȚIA CARE SALVEAZĂ SCROLL-UL CÂND DAI CLICK PE O MAȘINĂ ---
+    const saveScrollPosition = () => {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    };
+
     const carsData = [
         {
             category: "Economic & Compact",
             cars: [
                 { 
                     id: "toyota-corolla", name: "Toyota Corolla", 
-                    images: ["https://www.netcarshow.com/Toyota-Corolla_Hatchback-2019-1280-01f25479186f659a1100a653d0c2c36098.jpg"], 
+                    images: ["https://img.classistatic.de/api/v1/mo-prod/images/77/77e41c87-69ad-422a-83c2-ad5c854f6986?rule=mo-1600"], 
                     description: "Toyota Corolla este alegerea ideală pentru deplasările urbane.", cost: 45, specs: { transmission: "Automată", fuel: "Hibrid", year: "2022", engine: "1.8L", power: "122 CP" }, features: { audio: ["CarPlay"], comfort: ["AC"], safety: ["ABS"] } 
                 },
                 { 
@@ -165,8 +177,11 @@ function ProductList() {
                                     transition: 'all 0.3s ease'
                                 }}>
                                     
-                                    <Link to={`/cars/${car.id}`} style={{ height: '240px', overflow: 'hidden', cursor: 'pointer', position: 'relative' }}>
-                                        {/* FOLOSIM PRIMA IMAGINE DIN ARRAY */}
+                                    <Link 
+                                        to={`/cars/${car.id}`} 
+                                        onClick={saveScrollPosition}
+                                        style={{ height: '240px', overflow: 'hidden', cursor: 'pointer', position: 'relative' }}
+                                    >
                                         <img src={car.images[0]} alt={car.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         <div style={{position: 'absolute', bottom: 0, left: 0, width: '100%', height: '50px', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)'}}></div>
                                     </Link>
@@ -179,10 +194,16 @@ function ProductList() {
                                             €{car.cost} <span style={{fontSize: '14px', color: '#888', fontWeight: 'normal'}}>/ zi</span>
                                         </div>
 
-                                        <Link to={`/cars/${car.id}`} style={{ 
-                                            display: 'block', textAlign: 'center', textDecoration: 'none', color: 'white', 
-                                            background: '#333', padding: '12px', borderRadius: '8px', marginBottom: '10px', fontWeight: '600', transition: '0.3s'
-                                        }} className="details-btn">
+                                        {/* --- 4. MODIFICARE AICI: ADĂUGAT onClick PENTRU A SALVA SCROLL-UL --- */}
+                                        <Link 
+                                            to={`/cars/${car.id}`} 
+                                            onClick={saveScrollPosition}
+                                            style={{ 
+                                                display: 'block', textAlign: 'center', textDecoration: 'none', color: 'white', 
+                                                background: '#333', padding: '12px', borderRadius: '8px', marginBottom: '10px', fontWeight: '600', transition: '0.3s'
+                                            }} 
+                                            className="details-btn"
+                                        >
                                             Vezi Detalii & Dotări
                                         </Link>
 
