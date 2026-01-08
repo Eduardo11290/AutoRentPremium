@@ -1,56 +1,76 @@
-AutoRent Premium is a high-end, responsive web application designed for browsing and booking luxury vehicles. Built with React and Redux Toolkit, this project demonstrates complex state management, dynamic pricing logic based on rental duration, and a sophisticated "Dark Mode" UI focused on user experience.
+AutoRent Premium - Full-Stack Car Rental Platform
+AutoRent Premium is a robust, full-stack web application designed for browsing and booking luxury vehicles. Built with React (Frontend) and ASP.NET Core Web API (Backend), this project bridges modern UI design with enterprise-level backend architecture, demonstrating proficiency in both client-side and server-side development.
 
 About the Project
-The goal of this project was to build a scalable front-end application that simulates a real-world car rental service. Unlike simple e-commerce stores, AutoRent Premium handles time-based logic:
+This project simulates a real-world premium car rental service. It goes beyond simple static pages by implementing a Full-Stack Architecture:
 
-Users select Pick-up and Return dates.
+Frontend: A responsive React SPA that handles user interaction, state management (Redux), and dynamic pricing logic.
 
-The application calculates the total cost based on the daily rate and the number of days selected.
+Backend: A C# .NET API that manages data persistence, serving vehicle data and saving bookings to local JSON files.
 
-The state is managed globally, allowing data to persist between the Fleet page, Car Details, and the Shopping Cart.
+The design philosophy focuses on a "Dark Luxury" aesthetic, while the code structure strictly adheres to Object-Oriented Programming (OOP) principles, Dependency Injection, and Generic Host patterns as required by modern academic standards.
 
-The design philosophy focuses on a "Dark Luxury" aesthetic, utilizing deep blacks, grays, and striking red accents to evoke a premium feel similar to top-tier automotive brands.
+Architecture & OOP Concepts
+The backend is built using .NET 8.0 and demonstrates core computer science concepts:
+
+Encapsulation: Data models (Vehicle, Car, Booking) protect their internal state.
+
+Inheritance: The Car class inherits common properties from the abstract Vehicle base class.
+
+Polymorphism: Method overriding (e.g., GetSummary()) and Interface implementation (IFileService).
+
+Composition: Car objects are composed of CarSpecs and CarFeatures.
+
+Dependency Injection (DI): Services like IFileService are injected into Controllers, ensuring loose coupling.
 
 Key Features
-Extensive Fleet Catalog:
-
-Browse vehicles by categories: Economic, Luxury, Supercars, SUVs, Electric.
-
-Smart Navigation: Dropdown menu with "Scroll-to-Section" functionality.
-
+Frontend (React + Redux)
 Dynamic Booking System:
 
 Interactive date pickers for Start/End dates.
 
-Automatic calculation of rental days and total price.
-
-Quick Book: One-click booking defaults to a 1-day rental (Today → Tomorrow).
+Real-time price calculation based on rental duration.
 
 Advanced Shopping Cart:
 
-Real-time updates of the booking period (adjusting quantity updates the return date automatically).
+API Integration: Submitting a booking sends data directly to the Backend API.
 
-Centralized layout for single items.
-
-Full CRUD operations (Add, Update Days, Remove).
+Centralized state management using Redux Toolkit.
 
 Premium UI/UX:
 
-Fully responsive Flexbox layout (3 cards per row, centered orphans).
+Fully responsive Flexbox layout (optimized for Mobile & Desktop).
 
-Custom-styled scrollbars.
+Custom-styled "Dark Mode" aesthetic with glassmorphism effects.
 
-Hover effects and smooth transitions.
+Backend (.NET Core API)
+RESTful API Endpoints:
 
-Global Footer and Sticky Navbar with glassmorphism effect.
+GET /api/cars: Fetches the vehicle fleet dynamically.
+
+POST /api/bookings: Receives and persists user bookings.
+
+Data Persistence: Uses a custom FileService wrapper to read/write data to JSON files, simulating a database without external dependencies.
+
+CORS Enabled: Configured to allow secure communication with the React frontend.
+
+Generic Host: Uses the standard .NET Generic Host for configuration, logging (ILogger), and lifecycle management.
 
 Technologies Used
-React.js: Component-based architecture (ProductList, CarDetail, CartItem).
+Frontend
+React.js: Component-based UI (ProductList, CarDetail).
 
-Redux Toolkit: Global state management (CartSlice) to handle booking data and quantities.
+Redux Toolkit: Global state management.
 
-React Router Dom: Client-side routing for seamless page navigation.
+React Router Dom: Navigation routing.
 
-React Icons: Professional vector icons for UI elements.
+CSS3: Custom variables & animations.
 
-CSS3: Custom styling variables, Flexbox grids, and responsive media queries.
+Backend
+C# / .NET 8.0: Server-side logic.
+
+ASP.NET Core Web API: API Framework.
+
+System.Text.Json: High-performance JSON processing.
+
+Author: Stefoni Petru Eduard Built as a final project demonstrating Full-Stack development mastery.
