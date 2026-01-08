@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
-import carsData from './carsData'; 
+// AM ȘTERS: import carsData from './carsData'; 
 import './CarDetail.css'; 
 
 const CarDetail = () => {
@@ -11,9 +11,9 @@ const CarDetail = () => {
     const navigate = useNavigate();
     const cartItems = useSelector(state => state.cart.items);
 
-    const car = carsData
-        .flatMap(category => category.cars)
-        .find(c => c.id === id);
+    // --- NOUL COD: State pentru mașina curentă ---
+    const [car, setCar] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const [currentImgIndex, setCurrentImgIndex] = useState(0);
     const [startDate, setStartDate] = useState("");
@@ -23,7 +23,26 @@ const CarDetail = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
+
+        // Fetch pentru a găsi mașina specifică
+        fetch('http://localhost:5132/api/cars')
+            .then(res => res.json())
+            .then(data => {
+                // Căutăm mașina în toate categoriile
+                const foundCar = data
+                    .flatMap(category => category.cars)
+                    .find(c => c.id === id);
+                
+                setCar(foundCar);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setLoading(false);
+            });
+    }, [id]);
+
+    if (loading) return <div style={{color:'white', textAlign:'center', marginTop:'100px'}}>Se încarcă detaliile...</div>;
 
     if (!car) {
         return (
@@ -59,23 +78,20 @@ const CarDetail = () => {
         }
     };
 
-    // --- MODIFICARE: Date Default (Azi -> Mâine) ---
     const handleAddToCart = () => {
         if (!isAdded) {
             let finalStart = startDate;
             let finalEnd = endDate;
             let rentalDays = days;
 
-            // Dacă utilizatorul NU a selectat date, punem automat AZI și MÂINE
             if (!startDate || !endDate) {
                 const today = new Date();
                 const tomorrow = new Date(today);
                 tomorrow.setDate(tomorrow.getDate() + 1);
 
-                // Formatăm YYYY-MM-DD
                 finalStart = today.toISOString().split('T')[0];
                 finalEnd = tomorrow.toISOString().split('T')[0];
-                rentalDays = 1; // Default 1 zi
+                rentalDays = 1;
             }
 
             dispatch(addItem({ 
@@ -91,10 +107,7 @@ const CarDetail = () => {
         <div className="car-detail-page">
             <div className="detail-container" style={{paddingTop: '40px'}}>
                 <div className="left-content">
-                    <div 
-                        onClick={() => navigate(-1)} 
-                        style={{ color: '#aaa', cursor: 'pointer', marginBottom: '20px', display: 'inline-flex', alignItems: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}
-                    >
+                    <div onClick={() => navigate(-1)} style={{ color: '#aaa', cursor: 'pointer', marginBottom: '20px', display: 'inline-flex', alignItems: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>
                         <span>‹</span> &nbsp; ÎNAPOI LA LISTĂ
                     </div>
 
@@ -133,15 +146,15 @@ const CarDetail = () => {
                             <>
                                 <details className="feature-accordion" open>
                                     <summary>Audio și Tehnologie</summary>
-                                    <ul className="feature-list">{car.features.audio.map((item, i) => <li key={i}>✓ {item}</li>)}</ul>
+                                    <ul className="feature-list">{car.features.audio && car.features.audio.map((item, i) => <li key={i}>✓ {item}</li>)}</ul>
                                 </details>
                                 <details className="feature-accordion">
                                     <summary>Confort</summary>
-                                    <ul className="feature-list">{car.features.comfort.map((item, i) => <li key={i}>✓ {item}</li>)}</ul>
+                                    <ul className="feature-list">{car.features.comfort && car.features.comfort.map((item, i) => <li key={i}>✓ {item}</li>)}</ul>
                                 </details>
                                 <details className="feature-accordion">
                                     <summary>Siguranță</summary>
-                                    <ul className="feature-list">{car.features.safety.map((item, i) => <li key={i}>✓ {item}</li>)}</ul>
+                                    <ul className="feature-list">{car.features.safety && car.features.safety.map((item, i) => <li key={i}>✓ {item}</li>)}</ul>
                                 </details>
                             </>
                         )}
@@ -176,33 +189,17 @@ const CarDetail = () => {
                                     className="finalize-btn"
                                     onClick={handleAddToCart}
                                     disabled={isAdded}
-                                    style={{
-                                        backgroundColor: isAdded ? '#333' : '#ff4d4d',
-                                        color: isAdded ? '#777' : 'white',
-                                        cursor: isAdded ? 'default' : 'pointer',
-                                        marginTop: '15px', width: '100%', padding: '15px', border: 'none', borderRadius: '8px', fontWeight: 'bold', textTransform: 'uppercase'
-                                    }}
+                                    style={{ backgroundColor: isAdded ? '#333' : '#ff4d4d', color: isAdded ? '#777' : 'white', cursor: isAdded ? 'default' : 'pointer', marginTop: '15px', width: '100%', padding: '15px', border: 'none', borderRadius: '8px', fontWeight: 'bold', textTransform: 'uppercase'}}
                                 >
                                     {isAdded ? 'Rezervat ✓' : 'Rezervă Acum'}
                                 </button>
                             </div>
                         )}
                         
-                        {/* Butonul apare și dacă nu ai calculat (pentru rezervare rapidă default) */}
-                        {totalPrice === 0 && (
-                             <button 
-                             className="finalize-btn"
-                             onClick={handleAddToCart}
-                             disabled={isAdded}
-                             style={{
-                                 backgroundColor: isAdded ? '#333' : '#ff4d4d',
-                                 color: isAdded ? '#777' : 'white',
-                                 cursor: isAdded ? 'default' : 'pointer',
-                                 marginTop: '15px', width: '100%', padding: '15px', border: 'none', borderRadius: '8px', fontWeight: 'bold', textTransform: 'uppercase'
-                             }}
-                         >
-                             {isAdded ? 'Rezervat ✓' : 'Rezervă Acum (Rapid)'}
-                         </button>
+                         {totalPrice === 0 && (
+                             <button className="finalize-btn" onClick={handleAddToCart} disabled={isAdded} style={{backgroundColor: isAdded ? '#333' : '#ff4d4d', color: isAdded ? '#777' : 'white', cursor: isAdded ? 'default' : 'pointer', marginTop: '15px', width: '100%', padding: '15px', border: 'none', borderRadius: '8px', fontWeight: 'bold', textTransform: 'uppercase'}}>
+                                 {isAdded ? 'Rezervat ✓' : 'Rezervă Acum (Rapid)'}
+                             </button>
                         )}
                     </div>
                 </div>

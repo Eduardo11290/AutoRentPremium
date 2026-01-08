@@ -18,7 +18,7 @@ function App() {
       {/* Main Content */}
       <div style={{ flex: 1, marginTop: '80px' }}> {/* Margin top to push content below fixed Navbar */}
         <Routes>
-          <Route path="/" element={<ProductList />} />
+          <Route path="/" element={<AboutUs/>} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/cars" element={<ProductList />} />
           <Route path="/cart" element={<CartItem />} />

@@ -38,7 +38,9 @@ const Navbar = () => {
                 {/* 2. CENTER NAVIGATION */}
                 <ul className="nav-menu">
                     <li className="nav-item">
-                        <Link to="/" className="nav-links">Acasă</Link>
+                        <Link to="/cars" className="nav-links">
+                        Acasă
+                        </Link>
                     </li>
 
                     {/* DROPDOWN CATEGORIES */}
