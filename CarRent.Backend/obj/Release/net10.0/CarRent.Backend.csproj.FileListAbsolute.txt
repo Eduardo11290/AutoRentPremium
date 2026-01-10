@@ -37,3 +37,16 @@ D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\refint\CarRent.Bac
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\CarRent.Backend.pdb
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\CarRent.Backend.genruntimeconfig.cache
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\ref\CarRent.Backend.dll
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\web.config
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\appsettings.Development.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\appsettings.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\CarRent.Backend.deps.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\CarRent.Backend.runtimeconfig.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\CarRent.Backend.staticwebassets.endpoints.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\Data\bookings.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\publish\Data\cars.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\bin\Release\net10.0\CarRent.Backend.staticwebassets.runtime.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\compressed\hhbixbbrqo-{0}-hl13e2155h-hl13e2155h.gz
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\compressed\c8xavq5apc-{0}-ywyxcujj14-ywyxcujj14.gz
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\compressed\iq0rsvrtns-{0}-gabhymq11j-gabhymq11j.gz
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\obj\Release\net10.0\compressed\r7208ydfgv-{0}-69kjnsiwqx-69kjnsiwqx.gz

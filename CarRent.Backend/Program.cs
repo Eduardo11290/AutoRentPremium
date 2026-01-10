@@ -38,6 +38,15 @@ app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
+app.UseStaticFiles(); 
+
+app.MapControllers();
+
+// 2. ADAUGĂ ASTA (Redirecționează orice altă cerere către index.html - pentru React Router):
+app.MapFallbackToFile("index.html");
+
+app.Run();
+
 app.MapControllers();
 
 app.Run(); // Run the application (main loop)

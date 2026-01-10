@@ -1,8 +1,16 @@
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\CarRent.Backend.exe
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\web.config
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\appsettings.Development.json
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\appsettings.json
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\Data\bookings.json
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\Data\cars.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\appsettings.Development.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\appsettings.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\CarRent.Backend.deps.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\CarRent.Backend.runtimeconfig.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\CarRent.Backend.staticwebassets.endpoints.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\Data\bookings.json
+D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\publish\Data\cars.json
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\CarRent.Backend.dll
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\CarRent.Backend.deps.json
 D:\C++\ProiectPOO\CarRent\CarRent.Backend\publish\CarRent.Backend.runtimeconfig.json
